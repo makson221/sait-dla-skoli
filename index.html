@@ -13,9 +13,16 @@
 </head>
 <body>
 
+<div class="bg-blobs" aria-hidden="true">
+  <div class="blob blob-1"></div>
+  <div class="blob blob-2"></div>
+  <div class="blob blob-3"></div>
+</div>
+<div class="grain" aria-hidden="true"></div>
+
 <header class="site-header" id="top">
   <div class="container header-inner">
-    <a class="brand" href="#top">
+    <a class="brand" href="index.html">
       <img src="assets/favicon.svg" alt="" class="brand-logo">
       <span class="brand-text">
         <strong>Заліська ЗОШ І-ІІ ст.</strong>
@@ -28,204 +35,90 @@
     </button>
 
     <nav class="main-nav" id="mainNav">
-      <a href="#home">Головна</a>
-      <a href="#about">Про школу</a>
-      <a href="#leadership">Керівництво</a>
-      <a href="#news">Новини</a>
-      <a href="#documents">Документи</a>
-      <a href="#parents">Батькам і учням</a>
-      <a href="#gallery">Галерея</a>
-      <a href="#contacts">Контакти</a>
+      <a href="index.html">Головна</a>
+      <a href="pro-shkolu.html">Про школу</a>
+      <a href="kerivnytstvo.html">Керівництво</a>
+      <a href="novyny.html">Новини</a>
+      <a href="dokumenty.html">Документи</a>
+      <a href="batky-uchni.html">Батькам і учням</a>
+      <a href="galereya.html">Галерея</a>
+      <a href="kontakty.html">Контакти</a>
     </nav>
   </div>
 </header>
 
 <main>
 
-  <section class="hero" id="home">
+  <section class="hero">
     <div class="container hero-inner">
       <h1>Заліська загальноосвітня школа<br>І–ІІ ступенів</h1>
       <p class="hero-subtitle">Навчаємо, виховуємо, розвиваємо кожну дитину</p>
       <div class="hero-actions">
-        <a href="#contacts" class="btn btn-primary">Звʼязатися з нами</a>
-        <a href="#about" class="btn btn-outline">Про школу</a>
+        <a href="kontakty.html" class="btn btn-primary">Звʼязатися з нами</a>
+        <a href="pro-shkolu.html" class="btn btn-outline">Про школу</a>
       </div>
     </div>
   </section>
 
-  <section class="section" id="about">
+  <section class="section">
     <div class="container">
-      <h2 class="section-title">Про школу</h2>
-      <div class="about-grid">
-        <div class="about-text">
-          <p>
-            Заліська загальноосвітня школа І–ІІ ступенів — навчальний заклад, що надає
-            початкову та базову загальну середню освіту дітям села Залісся
-            Борщівського району Тернопільської області.
-          </p>
-          <p>
-            У школі створено умови для гармонійного розвитку учнів, формування
-            їхніх знань, вмінь та навичок, виховання свідомих, відповідальних
-            і патріотичних громадян України.
-          </p>
-          <p>
-            Колектив школи дбає про якісну освіту, безпечне освітнє середовище
-            та підтримку кожної дитини на шляху її навчання.
-          </p>
-        </div>
-        <div class="about-card">
-          <h3>Коротко про заклад</h3>
-          <ul class="info-list">
-            <li><span>Тип закладу</span>Загальноосвітня школа І–ІІ ступенів</li>
-            <li><span>Адреса</span>с. Залісся, Борщівський район, Тернопільська область</li>
-            <li><span>Поштовий індекс</span>48745</li>
-          </ul>
-        </div>
+      <h2 class="section-title reveal">Розділи сайту</h2>
+      <div class="highlight-grid">
+
+        <a class="highlight-card glass glass-hover reveal" style="--i:0" href="pro-shkolu.html">
+          <span class="highlight-icon">🏫</span>
+          <h3>Про школу</h3>
+          <p>Освітній заклад, місія та цінності, яких дотримується наша школа.</p>
+          <span class="highlight-link">Детальніше <span>→</span></span>
+        </a>
+
+        <a class="highlight-card glass glass-hover reveal" style="--i:1" href="kerivnytstvo.html">
+          <span class="highlight-icon">🧑‍🏫</span>
+          <h3>Керівництво</h3>
+          <p>Директор школи та контакти для звернень.</p>
+          <span class="highlight-link">Детальніше <span>→</span></span>
+        </a>
+
+        <a class="highlight-card glass glass-hover reveal" style="--i:2" href="novyny.html">
+          <span class="highlight-icon">📰</span>
+          <h3>Новини</h3>
+          <p>Останні події, свята та оголошення школи.</p>
+          <span class="highlight-link">Детальніше <span>→</span></span>
+        </a>
+
+        <a class="highlight-card glass glass-hover reveal" style="--i:3" href="dokumenty.html">
+          <span class="highlight-icon">📄</span>
+          <h3>Документи</h3>
+          <p>Статут, освітня програма та інші офіційні документи.</p>
+          <span class="highlight-link">Детальніше <span>→</span></span>
+        </a>
+
+        <a class="highlight-card glass glass-hover reveal" style="--i:4" href="batky-uchni.html">
+          <span class="highlight-icon">🎒</span>
+          <h3>Батькам і учням</h3>
+          <p>Вступ, розклад, безпека та харчування у школі.</p>
+          <span class="highlight-link">Детальніше <span>→</span></span>
+        </a>
+
+        <a class="highlight-card glass glass-hover reveal" style="--i:5" href="galereya.html">
+          <span class="highlight-icon">📷</span>
+          <h3>Галерея</h3>
+          <p>Фотографії зі шкільного життя та подій.</p>
+          <span class="highlight-link">Детальніше <span>→</span></span>
+        </a>
+
       </div>
     </div>
   </section>
 
-  <section class="section section-alt" id="leadership">
+  <section class="section">
     <div class="container">
-      <h2 class="section-title">Керівництво</h2>
-      <div class="director-card">
-        <div class="director-avatar" aria-hidden="true">СО</div>
-        <div class="director-info">
-          <h3>Соловій Оксана Степанівна</h3>
-          <p class="director-role">Директор школи</p>
-          <a class="director-phone" href="tel:+380966222933">
-            📞 0 (96) 622 29 33
-          </a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="section" id="news">
-    <div class="container">
-      <h2 class="section-title">Новини</h2>
-      <!-- Приклади новин. Замінюйте датою, заголовком і текстом реальної події школи. -->
-      <div class="news-grid">
-        <article class="news-card">
-          <time class="news-date" datetime="2026-09-01">1 вересня 2026</time>
-          <h3>День знань</h3>
-          <p>Урочиста лінійка з нагоди початку нового навчального року для учнів та їхніх родин.</p>
-        </article>
-        <article class="news-card">
-          <time class="news-date" datetime="2026-10-05">5 жовтня 2026</time>
-          <h3>День учителя</h3>
-          <p>Свято на честь педагогічного колективу школи — привітання від учнів та батьків.</p>
-        </article>
-        <article class="news-card">
-          <time class="news-date" datetime="2026-10-24">24 жовтня 2026</time>
-          <h3>Осінні канікули</h3>
-          <p>Інформація про терміни канікул та режим роботи школи уточнюється у класних керівників.</p>
-        </article>
-      </div>
-      <p class="section-note">Актуальні новини та оголошення школи уточнюйте за телефоном школи.</p>
-    </div>
-  </section>
-
-  <section class="section section-alt" id="documents">
-    <div class="container">
-      <h2 class="section-title">Документи</h2>
-      <ul class="docs-list">
-        <li>
-          <span class="docs-icon" aria-hidden="true">📄</span>
-          <span>Статут школи</span>
-        </li>
-        <li>
-          <span class="docs-icon" aria-hidden="true">📄</span>
-          <span>Ліцензія на провадження освітньої діяльності</span>
-        </li>
-        <li>
-          <span class="docs-icon" aria-hidden="true">📄</span>
-          <span>Освітня програма закладу</span>
-        </li>
-        <li>
-          <span class="docs-icon" aria-hidden="true">📄</span>
-          <span>Правила прийому учнів</span>
-        </li>
-        <li>
-          <span class="docs-icon" aria-hidden="true">📄</span>
-          <span>Річний звіт директора школи</span>
-        </li>
-      </ul>
-      <p class="section-note">Електронні копії документів будуть розміщені найближчим часом. Ознайомитися з ними можна також у приміщенні школи.</p>
-    </div>
-  </section>
-
-  <section class="section" id="parents">
-    <div class="container">
-      <h2 class="section-title">Батькам і учням</h2>
-      <div class="parents-grid">
-        <div class="parents-card">
-          <h3>🎒 Вступ до школи</h3>
-          <p>Для зарахування дитини до 1 класу або переведення з іншого закладу звертайтеся до директора школи за телефоном.</p>
-        </div>
-        <div class="parents-card">
-          <h3>📅 Розклад і канікули</h3>
-          <p>Розклад уроків, дзвінків і графік канікул повідомляють класні керівники на початку навчального року.</p>
-        </div>
-        <div class="parents-card">
-          <h3>🛡️ Безпека та підтримка</h3>
-          <p>З питань безпечного освітнього середовища, булінгу чи психологічної підтримки звертайтеся до адміністрації школи.</p>
-        </div>
-        <div class="parents-card">
-          <h3>🍎 Харчування</h3>
-          <p>Інформацію про організацію харчування учнів уточнюйте у класного керівника або в адміністрації школи.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="section section-alt" id="gallery">
-    <div class="container">
-      <h2 class="section-title">Галерея</h2>
-      <div class="gallery-grid">
-        <div class="gallery-placeholder">📷<span>Шкільне життя</span></div>
-        <div class="gallery-placeholder">📷<span>Свята та події</span></div>
-        <div class="gallery-placeholder">📷<span>Навчальний процес</span></div>
-        <div class="gallery-placeholder">📷<span>Спортивні змагання</span></div>
-      </div>
-      <p class="section-note">Фотографії зі шкільного життя будуть додані найближчим часом.</p>
-    </div>
-  </section>
-
-  <section class="section" id="contacts">
-    <div class="container">
-      <h2 class="section-title">Контакти</h2>
-      <div class="contacts-grid">
-
-        <div class="contact-card">
-          <h3>Адреса</h3>
-          <p>
-            48745, Тернопільська область,<br>
-            Борщівський район,<br>
-            село Залісся, вул. Центральна, 9
-          </p>
-          <a
-            class="btn btn-outline btn-small"
-            href="https://www.google.com/maps/search/?api=1&query=%D0%A2%D0%B5%D1%80%D0%BD%D0%BE%D0%BF%D1%96%D0%BB%D1%8C%D1%81%D1%8C%D0%BA%D0%B0%20%D0%BE%D0%B1%D0%BB%D0%B0%D1%81%D1%82%D1%8C%2C%20%D0%91%D0%BE%D1%80%D1%89%D1%96%D0%B2%D1%81%D1%8C%D0%BA%D0%B8%D0%B9%20%D1%80%D0%B0%D0%B9%D0%BE%D0%BD%2C%20%D1%81%D0%B5%D0%BB%D0%BE%20%D0%97%D0%B0%D0%BB%D1%96%D1%81%D1%81%D1%8F%2C%20%D0%B2%D1%83%D0%BB.%20%D0%A6%D0%B5%D0%BD%D1%82%D1%80%D0%B0%D0%BB%D1%8C%D0%BD%D0%B0%2C%209"
-            target="_blank" rel="noopener">
-            Переглянути на карті
-          </a>
-        </div>
-
-        <div class="contact-card">
-          <h3>Телефон</h3>
-          <p><a href="tel:+380966222933">0 (96) 622 29 33</a></p>
-          <p class="contact-note">Директор — Соловій Оксана Степанівна</p>
-        </div>
-
-        <div class="contact-card">
-          <h3>Напишіть нам</h3>
-          <p class="contact-note">
-            Зателефонуйте за вказаним номером, щоб отримати інформацію
-            про вступ, розклад занять чи інші питання роботи школи.
-          </p>
-        </div>
-
+      <div class="glass reveal" style="padding: 34px; text-align:center;">
+        <h2 style="margin:0 0 10px;">Потрібна консультація?</h2>
+        <p style="color:var(--color-text-muted); margin:0 0 22px;">
+          Телефонуйте директору школи — Соловій Оксані Степанівні
+        </p>
+        <a class="btn btn-primary" href="tel:+380966222933">📞 0 (96) 622 29 33</a>
       </div>
     </div>
   </section>
@@ -238,6 +131,8 @@
     <p>с. Залісся, Борщівський район, Тернопільська область, 48745</p>
   </div>
 </footer>
+
+<a href="#top" id="toTop" class="glass to-top" aria-label="Прокрутити нагору">↑</a>
 
 <script src="js/main.js"></script>
 </body>

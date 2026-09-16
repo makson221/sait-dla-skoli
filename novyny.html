@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Новини — Заліська ЗОШ І-ІІ ступенів</title>
+<meta name="description" content="Новини та події Заліської загальноосвітньої школи І-ІІ ступенів.">
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div class="bg-blobs" aria-hidden="true">
+  <div class="blob blob-1"></div>
+  <div class="blob blob-2"></div>
+  <div class="blob blob-3"></div>
+</div>
+<div class="grain" aria-hidden="true"></div>
+
+<header class="site-header" id="top">
+  <div class="container header-inner">
+    <a class="brand" href="index.html">
+      <img src="assets/favicon.svg" alt="" class="brand-logo">
+      <span class="brand-text">
+        <strong>Заліська ЗОШ І-ІІ ст.</strong>
+        <small>с. Залісся, Борщівський район</small>
+      </span>
+    </a>
+
+    <button class="nav-toggle" id="navToggle" aria-label="Відкрити меню" aria-expanded="false" aria-controls="mainNav">
+      <span></span><span></span><span></span>
+    </button>
+
+    <nav class="main-nav" id="mainNav">
+      <a href="index.html">Головна</a>
+      <a href="pro-shkolu.html">Про школу</a>
+      <a href="kerivnytstvo.html">Керівництво</a>
+      <a href="novyny.html">Новини</a>
+      <a href="dokumenty.html">Документи</a>
+      <a href="batky-uchni.html">Батькам і учням</a>
+      <a href="galereya.html">Галерея</a>
+      <a href="kontakty.html">Контакти</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+  <section class="sub-hero">
+    <div class="container">
+      <span class="eyebrow">Стрічка подій</span>
+      <h1>Новини школи</h1>
+      <p>Останні події, свята та оголошення. Наведені нижче записи — приклад, який редагується під реальні події.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <!-- Приклади новин. Замінюйте датою, заголовком і текстом реальної події школи. -->
+      <div class="news-grid">
+        <article class="news-card glass glass-hover reveal" style="--i:0">
+          <time class="news-date" datetime="2026-09-01">1 вересня 2026</time>
+          <h3>День знань</h3>
+          <p>Урочиста лінійка з нагоди початку нового навчального року для учнів та їхніх родин.</p>
+        </article>
+        <article class="news-card glass glass-hover reveal" style="--i:1">
+          <time class="news-date" datetime="2026-10-05">5 жовтня 2026</time>
+          <h3>День учителя</h3>
+          <p>Свято на честь педагогічного колективу школи — привітання від учнів та батьків.</p>
+        </article>
+        <article class="news-card glass glass-hover reveal" style="--i:2">
+          <time class="news-date" datetime="2026-10-24">24 жовтня 2026</time>
+          <h3>Осінні канікули</h3>
+          <p>Інформація про терміни канікул та режим роботи школи уточнюється у класних керівників.</p>
+        </article>
+        <article class="news-card glass glass-hover reveal" style="--i:3">
+          <time class="news-date" datetime="2026-12-19">19 грудня 2026</time>
+          <h3>Новорічні свята</h3>
+          <p>Підготовка до новорічних ранків та концертів для учнів школи.</p>
+        </article>
+        <article class="news-card glass glass-hover reveal" style="--i:4">
+          <time class="news-date" datetime="2026-05-25">25 травня 2027</time>
+          <h3>Останній дзвоник</h3>
+          <p>Урочисте завершення навчального року — свято для всіх класів школи.</p>
+        </article>
+        <article class="news-card glass glass-hover reveal" style="--i:5">
+          <time class="news-date" datetime="2027-06-01">1 червня 2027</time>
+          <h3>День захисту дітей</h3>
+          <p>Розважальні та спортивні заходи для учнів школи разом із батьками.</p>
+        </article>
+      </div>
+      <p class="section-note reveal">Актуальні новини та оголошення школи уточнюйте за телефоном школи.</p>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <p>© <span id="year"></span> Заліська загальноосвітня школа І–ІІ ступенів</p>
+    <p>с. Залісся, Борщівський район, Тернопільська область, 48745</p>
+  </div>
+</footer>
+
+<a href="#top" id="toTop" class="glass to-top" aria-label="Прокрутити нагору">↑</a>
+
+<script src="js/main.js"></script>
+</body>
+</html>
