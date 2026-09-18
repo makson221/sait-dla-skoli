@@ -723,31 +723,6 @@ a { color: inherit; }
   transform: scale(1.07);
 }
 
-.gallery-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
-}
-
-.gallery-placeholder {
-  aspect-ratio: 4 / 3;
-  border-radius: var(--radius);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  font-size: 2rem;
-  color: var(--color-teal);
-  cursor: default;
-}
-
-.gallery-placeholder span {
-  font-size: 0.85rem;
-  font-weight: 700;
-  color: var(--color-text-muted);
-}
-
 /* ---------- Contacts ---------- */
 .contacts-grid {
   display: grid;
@@ -854,7 +829,6 @@ a { color: inherit; }
   }
 
   .parents-grid,
-  .gallery-grid,
   .photo-grid,
   .docs-list {
     grid-template-columns: 1fr 1fr;
@@ -901,7 +875,6 @@ a { color: inherit; }
   }
 
   .parents-grid,
-  .gallery-grid,
   .photo-grid,
   .docs-list {
     grid-template-columns: 1fr;
