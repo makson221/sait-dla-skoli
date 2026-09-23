@@ -1,0 +1,54 @@
+@page "{id:int}"
+@model DetailsModel
+@{
+    ViewData["Title"] = Model.Work.Title;
+    var w = Model.Work;
+}
+<a asp-page="/Index" asp-route-year="@w.Year" asp-route-group="@w.GroupName" class="back">← Роботи групи @w.GroupName за @w.Year рік</a>
+
+<article class="card detail">
+    <span class="badge badge-@w.Type.ToString().ToLowerInvariant()">@w.Type.Title()</span>
+    <h1>@w.Title</h1>
+
+    <dl class="meta">
+        <dt>Студент</dt>
+        <dd>@w.StudentName</dd>
+        <dt>Група</dt>
+        <dd><a asp-page="/Index" asp-route-group="@w.GroupName">@w.GroupName</a></dd>
+        <dt>Рік захисту</dt>
+        <dd><a asp-page="/Index" asp-route-year="@w.Year">@w.Year</a></dd>
+        @if (w.Supervisor is not null)
+        {
+            <dt>Науковий керівник</dt>
+            <dd>@w.Supervisor</dd>
+        }
+        <dt>Додано</dt>
+        <dd>@w.CreatedAt.ToLocalTime().ToString("d MMMM yyyy") @(string.IsNullOrEmpty(w.UploadedByName) ? "" : $"· {w.UploadedByName}")</dd>
+    </dl>
+
+    @if (w.Description is not null)
+    {
+        <h2>Анотація</h2>
+        <p class="description">@w.Description</p>
+    }
+
+    <div class="file-box">
+        <span class="file-icon" aria-hidden="true">📄</span>
+        <div>
+            <strong>@w.FileName</strong>
+            <div class="muted small">@FileRules.FormatSize(w.FileSize) · скачано @w.DownloadCount раз(и)</div>
+        </div>
+        <a class="btn" href="/download/@w.Id">Скачати</a>
+    </div>
+
+    @if (Model.CanManage)
+    {
+        <div class="form-actions">
+            <a class="btn btn-ghost" asp-page="/Works/Edit" asp-route-id="@w.Id">Редагувати</a>
+            <form method="post" asp-page-handler="Delete" asp-route-id="@w.Id" class="inline"
+                  onsubmit="return confirm('Видалити цю роботу разом із файлом? Дію не можна скасувати.');">
+                <button type="submit" class="btn btn-danger">Видалити</button>
+            </form>
+        </div>
+    }
+</article>

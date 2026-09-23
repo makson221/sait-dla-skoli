@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>@(ViewData["Title"] is string t ? $"{t} · " : "")Архів робіт</title>
+    <link rel="icon" href="~/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+</head>
+<body>
+    <header class="topbar">
+        <div class="container topbar-inner">
+            <a class="brand" asp-page="/Index">
+                <img src="~/favicon.svg" alt="" width="34" height="34" />
+                <span>Архів курсових і дипломних робіт</span>
+            </a>
+            <nav class="nav">
+                <a asp-page="/Index">Каталог</a>
+                @if (User.CanUpload())
+                {
+                    <a asp-page="/Works/Upload" class="btn btn-small">+ Додати роботу</a>
+                }
+                @if (User.IsAdmin())
+                {
+                    <a asp-page="/Admin/Index">Адміністрування</a>
+                }
+                @if (User.Identity?.IsAuthenticated == true)
+                {
+                    <span class="nav-user" title="Ви увійшли як">@User.Identity.Name</span>
+                    <form method="post" asp-page="/Logout" class="inline">
+                        <button type="submit" class="link-button">Вийти</button>
+                    </form>
+                }
+                else
+                {
+                    <a asp-page="/Login">Вхід для викладачів</a>
+                }
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        @if (TempData["Message"] is string message)
+        {
+            <div class="alert alert-success" role="status">@message</div>
+        }
+        @if (TempData["Error"] is string error)
+        {
+            <div class="alert alert-error" role="alert">@error</div>
+        }
+        @RenderBody()
+    </main>
+
+    <footer class="footer">
+        <div class="container">Архів курсових і дипломних робіт · @DateTime.Now.Year</div>
+    </footer>
+
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

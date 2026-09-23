@@ -1,0 +1,15 @@
+@page
+@model UploadModel
+@{
+    ViewData["Title"] = "Додати роботу";
+}
+<a asp-page="/Index" class="back">← До каталогу</a>
+<form method="post" enctype="multipart/form-data" class="card form" data-upload-form>
+    <h1>Додати роботу</h1>
+    <partial name="_WorkFields" model="Model.Form" />
+    <div class="form-actions">
+        <button type="submit" class="btn">Завантажити в архів</button>
+        <a asp-page="/Index" class="btn btn-ghost">Скасувати</a>
+    </div>
+</form>
+<partial name="_UploadScript" />

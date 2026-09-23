@@ -1,0 +1,70 @@
+@model ArkhivRobit.Pages.Works.WorkFormViewModel
+@* Поля форми, спільні для сторінок «Додати роботу» і «Редагувати». *@
+
+<div asp-validation-summary="ModelOnly" class="alert alert-error"></div>
+
+<div class="form-grid">
+    <label class="field">
+        <span class="field-label">Тип роботи *</span>
+        <select name="Input.Type">
+            @foreach (var t in Enum.GetValues<WorkType>())
+            {
+                <option value="@t" selected="@(Model.Input.Type == t)">@t.Title()</option>
+            }
+        </select>
+    </label>
+    <label class="field">
+        <span class="field-label">Рік захисту *</span>
+        <input name="Input.Year" type="number" min="1990" max="2100" required value="@Model.Input.Year" />
+        <span class="field-error">@Model.Error("Input.Year")</span>
+    </label>
+</div>
+
+<div class="form-grid">
+    <label class="field">
+        <span class="field-label">Група *</span>
+        <input name="Input.GroupName" required maxlength="50" list="known-groups" value="@Model.Input.GroupName" placeholder="Напр. КН-41" autocomplete="off" />
+        <datalist id="known-groups">
+            @foreach (var g in Model.KnownGroups)
+            {
+                <option value="@g"></option>
+            }
+        </datalist>
+        <small class="muted">Оберіть зі списку, щоб не створити дублікат групи.</small>
+        <span class="field-error">@Model.Error("Input.GroupName")</span>
+    </label>
+    <label class="field">
+        <span class="field-label">ПІБ студента *</span>
+        <input name="Input.StudentName" required maxlength="200" value="@Model.Input.StudentName" />
+        <span class="field-error">@Model.Error("Input.StudentName")</span>
+    </label>
+</div>
+
+<label class="field">
+    <span class="field-label">Тема роботи *</span>
+    <input name="Input.Title" required minlength="3" maxlength="300" value="@Model.Input.Title" />
+    <span class="field-error">@Model.Error("Input.Title")</span>
+</label>
+
+<label class="field">
+    <span class="field-label">Науковий керівник</span>
+    <input name="Input.Supervisor" maxlength="200" value="@Model.Input.Supervisor" />
+</label>
+
+<label class="field">
+    <span class="field-label">Анотація</span>
+    <textarea name="Input.Description" rows="4" maxlength="4000">@Model.Input.Description</textarea>
+</label>
+
+<label class="field">
+    <span class="field-label">@(Model.CurrentFileName is null ? "Файл роботи *" : "Замінити файл (необов'язково)")</span>
+    <input name="Input.File" type="file" accept="@string.Join(",", Model.Options.AllowedExtensions)" @(Model.CurrentFileName is null ? "required" : "") />
+    <small class="muted">
+        @string.Join(", ", Model.Options.AllowedExtensions.Select(e => e.TrimStart('.').ToUpperInvariant())) · до @Model.Options.MaxFileSizeMb МБ
+        @if (Model.CurrentFileName is not null)
+        {
+            <span>· поточний файл: <strong>@Model.CurrentFileName</strong></span>
+        }
+    </small>
+    <span class="field-error">@Model.Error("Input.File")</span>
+</label>

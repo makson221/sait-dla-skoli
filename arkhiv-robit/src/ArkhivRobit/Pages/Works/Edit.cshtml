@@ -1,0 +1,15 @@
+@page "{id:int}"
+@model EditModel
+@{
+    ViewData["Title"] = "Редагування";
+}
+<a asp-page="/Works/Details" asp-route-id="@Model.Work.Id" class="back">← До роботи</a>
+<form method="post" enctype="multipart/form-data" class="card form" data-upload-form>
+    <h1>Редагування роботи</h1>
+    <partial name="_WorkFields" model="Model.Form" />
+    <div class="form-actions">
+        <button type="submit" class="btn">Зберегти</button>
+        <a asp-page="/Works/Details" asp-route-id="@Model.Work.Id" class="btn btn-ghost">Скасувати</a>
+    </div>
+</form>
+<partial name="_UploadScript" />

@@ -1,0 +1,32 @@
+@page
+@model LoginModel
+@{
+    ViewData["Title"] = "Вхід";
+}
+<div class="narrow">
+    <div class="card">
+        <h1>Вхід за кодом</h1>
+        @if (User.Identity?.IsAuthenticated == true)
+        {
+            <div class="alert alert-error">
+                Ви увійшли як <strong>@User.Identity.Name</strong>, але для цієї сторінки потрібен інший код доступу.
+            </div>
+        }
+        <p class="muted">
+            Реєстрація не потрібна. Введіть код доступу, який вам видав адміністратор архіву.
+            @if (!Model.ArchiveIsPublic)
+            {
+                <span>Для перегляду робіт використовуйте спільний код перегляду.</span>
+            }
+        </p>
+        <form method="post" class="form">
+            <input type="hidden" asp-for="ReturnUrl" />
+            <label class="field">
+                <span class="field-label">Код доступу</span>
+                <input asp-for="Code" autocomplete="off" autofocus placeholder="Напр. 7F3K-92QA" class="code-input" />
+                <span asp-validation-for="Code" class="field-error"></span>
+            </label>
+            <button type="submit" class="btn btn-block">Увійти</button>
+        </form>
+    </div>
+</div>

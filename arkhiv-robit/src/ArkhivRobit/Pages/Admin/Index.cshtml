@@ -1,0 +1,93 @@
+@page
+@model ArkhivRobit.Pages.Admin.IndexModel
+@{
+    ViewData["Title"] = "Адміністрування";
+}
+<h1>Адміністрування</h1>
+
+@if (Model.NewCode is not null)
+{
+    <div class="card code-card" role="status">
+        <p>Код доступу для <strong>@Model.NewCodeOwner</strong>:</p>
+        <p class="new-code">@Model.NewCode</p>
+        <p class="muted small">Перепишіть або скопіюйте його зараз і передайте викладачу. Після оновлення сторінки код більше не буде показано. Якщо код загубиться, просто створіть новий.</p>
+    </div>
+}
+
+<section class="stats">
+    <div class="card stat"><strong>@Model.WorksCount</strong><span>робіт в архіві</span></div>
+    <div class="card stat"><strong>@FileRules.FormatSize(Model.TotalSize)</strong><span>займають файли</span></div>
+    <div class="card stat"><strong>@Model.TotalDownloads</strong><span>скачувань</span></div>
+    <div class="card stat"><strong>@Model.Teachers.Count(t => t.IsActive)</strong><span>активних викладачів</span></div>
+</section>
+
+<section class="card">
+    <h2>Викладачі та коди доступу</h2>
+    <p class="muted">Кожен викладач отримує особистий код, яким входить на сайт і завантажує роботи. Реєстрація не потрібна.</p>
+
+    <form method="post" asp-page-handler="Add" class="inline-form">
+        <input asp-for="NewTeacherName" placeholder="ПІБ викладача" maxlength="200" />
+        <button type="submit" class="btn">Створити код</button>
+    </form>
+    <span asp-validation-for="NewTeacherName" class="field-error"></span>
+
+    @if (Model.Teachers.Count == 0)
+    {
+        <p class="muted">Викладачів ще немає.</p>
+    }
+    else
+    {
+        <table class="works admin-table">
+            <thead>
+                <tr><th>Викладач</th><th>Робіт</th><th>Статус</th><th>Створено</th><th></th></tr>
+            </thead>
+            <tbody>
+                @foreach (var t in Model.Teachers)
+                {
+                    <tr class="@(t.IsActive ? "" : "row-disabled")">
+                        <td data-label="Викладач">@t.Name</td>
+                        <td data-label="Робіт">@t.WorksCount</td>
+                        <td data-label="Статус">
+                            <span class="badge @(t.IsActive ? "badge-ok" : "badge-off")">@(t.IsActive ? "Активний" : "Вимкнений")</span>
+                        </td>
+                        <td data-label="Створено">@t.CreatedAt.ToLocalTime().ToString("dd.MM.yyyy")</td>
+                        <td class="actions-cell">
+                            <form method="post" asp-page-handler="NewCode" asp-route-id="@t.Id" class="inline"
+                                  onsubmit="return confirm('Створити новий код? Старий код перестане працювати.');">
+                                <button class="btn btn-small btn-ghost" type="submit">Новий код</button>
+                            </form>
+                            <form method="post" asp-page-handler="Toggle" asp-route-id="@t.Id" class="inline">
+                                <button class="btn btn-small btn-ghost" type="submit">@(t.IsActive ? "Вимкнути" : "Увімкнути")</button>
+                            </form>
+                            <form method="post" asp-page-handler="Delete" asp-route-id="@t.Id" class="inline"
+                                  onsubmit="return confirm('Видалити викладача? Його роботи залишаться в архіві.');">
+                                <button class="btn btn-small btn-danger" type="submit">Видалити</button>
+                            </form>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+</section>
+
+@if (Model.ByYear.Count > 0)
+{
+    <section class="card">
+        <h2>Роботи за роками</h2>
+        <table class="works admin-table">
+            <thead><tr><th>Рік</th><th>Курсових</th><th>Дипломних</th><th>Разом</th></tr></thead>
+            <tbody>
+                @foreach (var (year, coursework, diploma) in Model.ByYear)
+                {
+                    <tr>
+                        <td data-label="Рік"><a asp-page="/Index" asp-route-year="@year">@year</a></td>
+                        <td data-label="Курсових">@coursework</td>
+                        <td data-label="Дипломних">@diploma</td>
+                        <td data-label="Разом"><strong>@(coursework + diploma)</strong></td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </section>
+}

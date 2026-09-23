@@ -1,0 +1,143 @@
+@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Каталог";
+}
+
+<section class="hero">
+    <h1>Архів курсових і дипломних робіт</h1>
+    <p>У архіві @Model.ArchiveTotal робіт. Оберіть групу та рік або скористайтеся пошуком.</p>
+</section>
+
+<form method="get" class="card filters">
+    <label class="field">
+        <span class="field-label">Рік</span>
+        <select name="year" onchange="this.form.submit()">
+            <option value="">Усі роки</option>
+            @foreach (var y in Model.Years)
+            {
+                <option value="@y" selected="@(Model.Year == y)">@y</option>
+            }
+        </select>
+    </label>
+    <label class="field">
+        <span class="field-label">Група</span>
+        <select name="group" onchange="this.form.submit()">
+            <option value="">Усі групи</option>
+            @foreach (var g in Model.Groups)
+            {
+                <option value="@g" selected="@(TextNormalizer.Group(Model.Group) == g)">@g</option>
+            }
+        </select>
+    </label>
+    <label class="field">
+        <span class="field-label">Тип</span>
+        <select name="type" onchange="this.form.submit()">
+            <option value="">Усі</option>
+            @foreach (var t in Enum.GetValues<WorkType>())
+            {
+                <option value="@t" selected="@(Model.Type == t)">@t.Title()</option>
+            }
+        </select>
+    </label>
+    <label class="field field-wide">
+        <span class="field-label">Пошук</span>
+        <input type="search" name="q" value="@Model.Query" placeholder="Тема, прізвище студента або керівника…" />
+    </label>
+    <div class="filter-actions">
+        <button type="submit" class="btn">Знайти</button>
+        @if (Model.HasFilter)
+        {
+            <a asp-page="/Index" class="btn btn-ghost">Скинути</a>
+        }
+    </div>
+</form>
+
+@if (!Model.HasFilter && Model.Overview.Count > 0)
+{
+    <section class="card">
+        <h2>Швидкий вибір за роком і групою</h2>
+        @foreach (var year in Model.Overview)
+        {
+            <div class="overview-row">
+                <a class="overview-year" asp-page="/Index" asp-route-year="@year.Year">@year.Year</a>
+                <div class="chips">
+                    @foreach (var (group, count) in year.Groups)
+                    {
+                        <a class="chip" asp-page="/Index" asp-route-year="@year.Year" asp-route-group="@group">
+                            @group <span class="chip-count">@count</span>
+                        </a>
+                    }
+                </div>
+            </div>
+        }
+    </section>
+}
+
+@if (Model.Works.Count == 0)
+{
+    <div class="card empty">
+        @if (Model.ArchiveTotal == 0)
+        {
+            <p>В архіві поки немає робіт.</p>
+            @if (User.CanUpload())
+            {
+                <a class="btn" asp-page="/Works/Upload">Додати першу роботу</a>
+            }
+        }
+        else
+        {
+            <p>За вашим запитом нічого не знайдено.</p>
+        }
+    </div>
+}
+else
+{
+    <p class="muted">
+        @(Model.HasFilter ? "Знайдено" : "Усього") робіт: <strong>@Model.TotalCount</strong>
+    </p>
+    <div class="card table-card">
+        <table class="works">
+            <thead>
+                <tr>
+                    <th>Тема</th>
+                    <th>Студент</th>
+                    <th>Група</th>
+                    <th>Рік</th>
+                    <th>Тип</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var w in Model.Works)
+                {
+                    <tr>
+                        <td data-label="Тема"><a asp-page="/Works/Details" asp-route-id="@w.Id" class="work-title">@w.Title</a></td>
+                        <td data-label="Студент">@w.StudentName</td>
+                        <td data-label="Група"><a asp-page="/Index" asp-route-group="@w.GroupName" asp-route-year="@w.Year">@w.GroupName</a></td>
+                        <td data-label="Рік">@w.Year</td>
+                        <td data-label="Тип"><span class="badge badge-@w.Type.ToString().ToLowerInvariant()">@w.Type.Title()</span></td>
+                        <td class="actions-cell">
+                            <a class="btn btn-small" href="/download/@w.Id" title="@w.FileName">Скачати</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+    @if (Model.TotalPages > 1)
+    {
+        <nav class="pager">
+            @if (Model.PageNumber > 1)
+            {
+                <a class="btn btn-ghost" asp-page="/Index" asp-all-route-data="Model.RouteFor(Model.PageNumber - 1)">← Назад</a>
+            }
+            <span>Сторінка @Model.PageNumber з @Model.TotalPages</span>
+            @if (Model.PageNumber < Model.TotalPages)
+            {
+                <a class="btn btn-ghost" asp-page="/Index" asp-all-route-data="Model.RouteFor(Model.PageNumber + 1)">Далі →</a>
+            }
+        </nav>
+    }
+}

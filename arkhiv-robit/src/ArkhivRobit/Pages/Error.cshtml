@@ -1,0 +1,14 @@
+@page
+@model ErrorModel
+@{
+    ViewData["Title"] = "Помилка";
+}
+<div class="card empty">
+    <h1>Сталася помилка</h1>
+    <p>Не вдалося виконати запит. Спробуйте ще раз трохи пізніше.</p>
+    @if (Model.ShowRequestId)
+    {
+        <p class="muted small">Код запиту: <code>@Model.RequestId</code></p>
+    }
+    <a class="btn" asp-page="/Index">До каталогу</a>
+</div>
